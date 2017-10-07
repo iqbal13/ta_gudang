@@ -5,7 +5,7 @@
 	$pass = 'ta_gudang';
 
 	$db = 'ta_gudang';
-
+	echo $host." ".$user." ".$pass;
 	$conn = mysqli_connect($host,$user,$pass,$db) or die('Database Belum Konek Bro');
 	$folder = "gudang";
 	$url = "http://".$_SERVER['HTTP_HOST'].'/'.$folder.'/';
