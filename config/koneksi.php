@@ -1,8 +1,8 @@
 <?php 
 	
-	$host = 'localhost';
-	$user = 'root';
-	$pass = '';
+	$host = 'https://www.db4free.net';
+	$user = 'ta_gudang';
+	$pass = 'ta_gudang';
 
 	$db = 'ta_gudang';
 
