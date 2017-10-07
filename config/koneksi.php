@@ -1,6 +1,6 @@
 <?php 
 	
-	$host = 'https://www.db4free.net';
+	$host = 'db4free.net';
 	$user = 'ta_gudang';
 	$pass = 'ta_gudang';
 
