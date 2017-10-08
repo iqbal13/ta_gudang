@@ -17,7 +17,7 @@
             <div class="box-body chat" id="chat-box">
                               <br />
 
-                <a class="btn btn-primary" type="button"> Tambah Data </a>
+                <a class="btn btn-primary" href="<?php echo $url ?>index.php?pages=tambahbarang"> Tambah Data </a>
                 <br />
                 <br />
               <div class="clearfix"> </div>
@@ -40,7 +40,7 @@
                   $query = mysqli_query($conn,"SELECT * FROM barang");
                   while($dt = mysqli_fetch_array($query)){ ?>
                   <tr>
-                    <td> <?php echo $no ?> </td>
+                    <td> <?php echo $no++ ?> </td>
                     <td> <?php echo $dt['kode_barang'] ?> <br /> </td>
                     <td> <?php echo $dt['nama_barang'] ?> </td>
                     <td> <?php echo $dt['stok'] ?> </td>

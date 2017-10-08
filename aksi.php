@@ -87,5 +87,40 @@
 
 
 
+	}else if($aksi == "tambahdata"){
+
+		$kode_barang  =$_POST['kode_barang'];
+		$nama_barang = $_POST['nama_barang'];
+		$stok = $_POST['stok'];
+		$stok_minimum = $_POST['stok_minimum'];
+		$lokasi = $_POST['lokasi'];
+
+
+		$query  = "INSERT INTO barang (kode_barang,nama_barang,stok,stok_minimum,lokasi) VALUES ('$kode_barang','$nama_barang','$stok','$stok_minimum','$lokasi')";
+		$d = mysqli_query($conn,$query);
+		if($d){
+			echo "<script>alert('Barang berhasil ditambahkan')</script>";
+			echo "<script>window.open('".$url."index.php?pages=databarang','_self')</script>";
+		}
+
+	}else if($aksi == "editdata"){
+
+
+		$kode_barang  =$_POST['kode_barang'];
+		$nama_barang = $_POST['nama_barang'];
+		$stok = $_POST['stok'];
+		$stok_minimum = $_POST['stok_minimum'];
+		$lokasi = $_POST['lokasi'];
+
+		$kode_barang_lama = $_POST['kode_barang_lama'];
+
+		$query  = "UPDATE barang SET nama_barang = '$nama_barang', kode_barang = '$kode_barang', stok = '$stok', stok_minimum = '$stok_minimum' , lokasi = '$lokasi' WHERE kode_barang = '$kode_barang_lama'";
+		$d = mysqli_query($conn,$query);
+		if($d){
+			echo "<script>alert('Barang berhasil ditambahkan')</script>";
+			echo "<script>window.open('".$url."index.php?pages=databarang','_self')</script>";
+		}
+
+
 	}
 ?>

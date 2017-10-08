@@ -14,7 +14,7 @@
 
               
             </div>
-            <div class="box-body chat" id="chat-box">
+            <div class="box-body">
                               <br />
 
                 <a class="btn btn-primary" type="button"> Tambah Data </a>
@@ -22,43 +22,48 @@
                 <br />
               <div class="clearfix"> </div>
 
-              <table class="table table-stripped" id="tabel-data">
-                <thead>
-                  <tr>
-                    <th> No </th>
-                    <th> Kode Barang </th>
-                    <th> Nama Barang </th>
-                    <th> Stok </th>
-                    <th> Stok Minimum </th>
-                    <th> Lokasi </th>
-                    <th> Aksi </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                  $no = 1;
-                  $query = mysqli_query($conn,"SELECT * FROM barang");
-                  while($dt = mysqli_fetch_array($query)){ ?>
-                  <tr>
-                    <td> <?php echo $no ?> </td>
-                    <td> <?php echo $dt['kode_barang'] ?> <br /> </td>
-                    <td> <?php echo $dt['nama_barang'] ?> </td>
-                    <td> <?php echo $dt['stok'] ?> </td>
-                    <td> <?php echo $dt['stok_minimum'] ?> </td>
-                    <td> <?php echo $dt['lokasi'] ?> </td>
-                    <td> 
-                      <a href="<?php echo $url ?>barcode.php?text=<?php echo $dt['kode_barang'] ?>"> <i class="fa fa-print"> </i> Print Barcode </a>
-                      <a href="#"> <i class="fa fa-search"> </i> Detail </a>
-                      <a href="#"> <i class="fa fa-edit"> </i> Edit </a>
-                      <a href="#"> <i class="fa fa-trash"> </i> Hapus </a>
+              <form method="POST" action="<?php echo $url ?>aksi.php?aksi=tambahdata">
+              <div class="col-md-6">
 
-                  <?php } ?>
-
-                </tbody>
+                <div class="form-group">
+                  <label> Kode Barang </label>
+                  <input type="text" name="kode_barang" class="form-control">
+                </div>
 
 
-              </table>
+                <div class="form-group">
+                  <label> Nama Barang </label>
+                  <input type="text" name="nama_barang" class="form-control">
+                </div>
 
+
+                <div class="form-group">
+                  <label> Stok Barang </label>
+                  <input type="text" name="stok" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                  <label> Stok Minimum Barang </label>
+                  <input type="text" name="stok_minimum" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                  <label> Lokasi </label>
+                  <input type="text" name="lokasi" class="form-control">
+                </div>  
+
+              </div>
+
+              <div class="col-md-6">
+
+
+              </div>
+              <div class="clearfix"> </div>
+              <button type="submit" class="btn btn-primary"> <i class="fa fa-save"> </i> Simpan </button>
+
+            </form>
 
 
             </div>
