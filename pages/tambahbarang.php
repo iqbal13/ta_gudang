@@ -54,6 +54,12 @@
                   <input type="text" name="lokasi" class="form-control">
                 </div>  
 
+
+                <div class="form-group">
+                  <label> Satuan </label>
+                  <input type="text" name="satuan" class="form-control">
+                </div>  
+
               </div>
 
               <div class="col-md-6">

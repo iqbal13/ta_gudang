@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label> Jumlah Barang </label>
-                                  <input type="text" name="jumlah" class="form-control" required="required">
+                                  <input type="text" name="jumlah" class="form-control">
                                 </div>
                                 
                                 <div class="form-group">

@@ -14,7 +14,7 @@
 
               
             </div>
-            <div class="box-body chat" id="chat-box">
+            <div class="box-body">
                               <br />
 
                 <a class="btn btn-primary" href="<?php echo $url ?>index.php?pages=tambahbarang"> Tambah Data </a>
@@ -31,6 +31,7 @@
                     <th> Stok </th>
                     <th> Stok Minimum </th>
                     <th> Lokasi </th>
+                    <th> Satuan </th>
                     <th> Aksi </th>
                   </tr>
                 </thead>
@@ -40,19 +41,20 @@
                   $query = mysqli_query($conn,"SELECT * FROM barang");
                   while($dt = mysqli_fetch_array($query)){ ?>
                   <tr>
-                    <td> <?php echo $no++ ?> </td>
+                    <td> <?php echo $no++  ?> </td>
                     <td> <?php echo $dt['kode_barang'] ?> <br /> </td>
                     <td> <?php echo $dt['nama_barang'] ?> </td>
                     <td> <?php echo $dt['stok'] ?> </td>
                     <td> <?php echo $dt['stok_minimum'] ?> </td>
                     <td> <?php echo $dt['lokasi'] ?> </td>
+                    <td> <?php echo $dt['satuan'] ?></td>
                     <td> 
 <!--                       <a href="<?php echo $url ?>barcode.php?text=<?php echo $dt['kode_barang'] ?>"> <i class="fa fa-print"> </i> Print Barcode </a>
  -->                      
  <a href="<?php echo $url ?>pages/printbarcode.php?kode_barang=<?php echo $dt['kode_barang'] ?>&nama_barang=<?php echo $dt['nama_barang'] ?>"><i class="fa fa-print"> </i> Print Barcode </a>
- <a href="#"> <i class="fa fa-search"> </i> Detail </a>
-                      <a href="#"> <i class="fa fa-edit"> </i> Edit </a>
-                      <a href="#"> <i class="fa fa-trash"> </i> Hapus </a>
+ <!-- <a href="#"> <i class="fa fa-search"> </i> Detail </a>
+ -->                      <a href="<?php echo $url ?>index.php?pages=editbarang&kode_barang=<?php echo $dt['kode_barang'] ?>"> <i class="fa fa-edit"> </i> Edit </a>
+                      <a href="<?php echo $url ?>aksi.php?aksi=hapusdata&kode_barang=<?php echo $dt['kode_barang'] ?>" onclick="return confirm('Hapus Data ini ? data akan terhapus permanen')"> <i class="fa fa-trash"> </i> Hapus </a>
 
                   <?php } ?>
 

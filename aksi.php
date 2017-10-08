@@ -94,9 +94,9 @@
 		$stok = $_POST['stok'];
 		$stok_minimum = $_POST['stok_minimum'];
 		$lokasi = $_POST['lokasi'];
+		$satuan = $_POST['satuan'];
 
-
-		$query  = "INSERT INTO barang (kode_barang,nama_barang,stok,stok_minimum,lokasi) VALUES ('$kode_barang','$nama_barang','$stok','$stok_minimum','$lokasi')";
+		$query  = "INSERT INTO barang (kode_barang,nama_barang,stok,stok_minimum,lokasi,satuan) VALUES ('$kode_barang','$nama_barang','$stok','$stok_minimum','$lokasi','$satuan')";
 		$d = mysqli_query($conn,$query);
 		if($d){
 			echo "<script>alert('Barang berhasil ditambahkan')</script>";
@@ -111,16 +111,37 @@
 		$stok = $_POST['stok'];
 		$stok_minimum = $_POST['stok_minimum'];
 		$lokasi = $_POST['lokasi'];
+		$satuan = $_POST['satuan'];
 
 		$kode_barang_lama = $_POST['kode_barang_lama'];
 
-		$query  = "UPDATE barang SET nama_barang = '$nama_barang', kode_barang = '$kode_barang', stok = '$stok', stok_minimum = '$stok_minimum' , lokasi = '$lokasi' WHERE kode_barang = '$kode_barang_lama'";
+
+
+		$query  = "UPDATE barang SET nama_barang = '$nama_barang', kode_barang = '$kode_barang', stok = '$stok', stok_minimum = '$stok_minimum' , lokasi = '$lokasi', satuan = '$satuan' WHERE kode_barang = '$kode_barang_lama'";
 		$d = mysqli_query($conn,$query);
 		if($d){
-			echo "<script>alert('Barang berhasil ditambahkan')</script>";
+
+			$query2 = "UPDATE barang_masuk SET kode_barang = '$kode_barang' WHERE kode_barang = '$kode_barang_lama'";
+
+			$query3 = "UPDATE barang_keluar SET kode_barang = '$kode_barang' WHERE kode_barang = '$kode_barang_lama'";
+
+			mysqli_query($conn,$query2);
+			mysqli_query($conn,$query3);
+
+			echo "<script>alert('Update Data Berhasil')</script>";
 			echo "<script>window.open('".$url."index.php?pages=databarang','_self')</script>";
 		}
 
 
+	}else if($aksi == "hapusdata"){
+		$kode_barang = $_GET['kode_barang'];
+
+		$query = "DELETE FROM barang WHERE kode_barang = '$kode_barang'";
+		$a = mysqli_query($conn,$query);
+		if($a){
+			echo "<script>alert('Data Barang Berhasil Dihapus')</script>";
+						echo "<script>window.open('".$url."index.php?pages=databarang','_self')</script>";
+
+		}
 	}
 ?>
