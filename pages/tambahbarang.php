@@ -58,6 +58,33 @@
                 <div class="form-group">
                   <label> Satuan </label>
                   <input type="text" name="satuan" class="form-control">
+                </div> 
+
+                
+                 <div class="form-group">
+                  <label> Vendor </label>
+                  <input type="text" name="vendor" class="form-control">
+                </div>  
+
+                 <div class="form-group">
+                  <label> Description </label>
+                  <input type="text" name="description" class="form-control">
+                </div>  
+
+                 <div class="form-group">
+                  <label> CM </label>
+                  <input type="text" name="cm" class="form-control">
+                </div>  
+
+                 <div class="form-group">
+                  <label> Planr </label>
+                  <input type="text" name="planr" class="form-control">
+                </div>  
+
+
+                 <div class="form-group">
+                  <label> UM </label>
+                  <input type="text" name="um" class="form-control">
                 </div>  
 
               </div>

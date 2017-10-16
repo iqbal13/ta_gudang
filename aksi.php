@@ -95,8 +95,13 @@
 		$stok_minimum = $_POST['stok_minimum'];
 		$lokasi = $_POST['lokasi'];
 		$satuan = $_POST['satuan'];
+		$vendor = $_POST['vendor'];
+		$description = $_POST['description'];
+		$cm = $_POST['cm'];
+		$planr = $_POST['planr'];
+		$um = $_POST['um'];
 
-		$query  = "INSERT INTO barang (kode_barang,nama_barang,stok,stok_minimum,lokasi,satuan) VALUES ('$kode_barang','$nama_barang','$stok','$stok_minimum','$lokasi','$satuan')";
+		$query  = "INSERT INTO barang (kode_barang,nama_barang,stok,stok_minimum,lokasi,satuan,vendor,description,cm,planr,um) VALUES ('$kode_barang','$nama_barang','$stok','$stok_minimum','$lokasi','$satuan','$vendor','$description','$cm','$planr','$um')";
 		$d = mysqli_query($conn,$query);
 		if($d){
 			echo "<script>alert('Barang berhasil ditambahkan')</script>";
@@ -114,10 +119,15 @@
 		$satuan = $_POST['satuan'];
 
 		$kode_barang_lama = $_POST['kode_barang_lama'];
+		$vendor = $_POST['vendor'];
+		$description = $_POST['description'];
+		$cm = $_POST['cm'];
+		$planr = $_POST['planr'];
+		$um = $_POST['um'];
 
 
 
-		$query  = "UPDATE barang SET nama_barang = '$nama_barang', kode_barang = '$kode_barang', stok = '$stok', stok_minimum = '$stok_minimum' , lokasi = '$lokasi', satuan = '$satuan' WHERE kode_barang = '$kode_barang_lama'";
+		$query  = "UPDATE barang SET nama_barang = '$nama_barang', kode_barang = '$kode_barang', stok = '$stok', stok_minimum = '$stok_minimum' , lokasi = '$lokasi', satuan = '$satuan', vendor = '$vendor', description = '$description', cm = '$cm', planr = '$planr', um = '$um' WHERE kode_barang = '$kode_barang_lama'";
 		$d = mysqli_query($conn,$query);
 		if($d){
 

@@ -64,6 +64,34 @@
                   <input type="text" name="satuan" class="form-control" value="<?php echo $dt['satuan'] ?>">
                 </div>  
 
+                   <div class="form-group">
+                  <label> Vendor </label>
+                  <input type="text" name="vendor" class="form-control" value="<?php echo $dt['vendor']; ?>">
+                </div>  
+
+                 <div class="form-group">
+                  <label> Description </label>
+                  <input type="text" name="description" class="form-control" value="<?php echo $dt['description']; ?>">
+                </div>  
+
+                 <div class="form-group">
+                  <label> CM </label>
+                  <input type="text" name="cm" class="form-control" value="<?php echo $dt['cm']; ?>">
+                </div>  
+
+                 <div class="form-group">
+                  <label> Planr </label>
+                  <input type="text" name="planr" class="form-control" value="<?php echo $dt['planr']; ?>">
+                </div>  
+
+
+                 <div class="form-group">
+                  <label> UM </label>
+                  <input type="text" name="um" class="form-control" value="<?php echo $dt['um']; ?>">
+                </div>  
+
+
+
               </div>
 
               <div class="col-md-6">
