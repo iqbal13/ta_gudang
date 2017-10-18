@@ -71,7 +71,7 @@
 
                  <div class="form-group">
                   <label> Description </label>
-                  <input type="text" name="description" class="form-control" value="<?php echo $dt['description']; ?>">
+                  <input type="text" name="description" class="form-control" value="<?php echo $dt['Description']; ?>">
                 </div>  
 
                  <div class="form-group">

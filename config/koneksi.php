@@ -1,14 +1,14 @@
 <?php 
 	
-	$host = 'db4free.net';
-	$user = 'ta_gudang';
-	$pass = 'ta_gudang';
+	$host = 'localhost';
+	$user = 'root';
+	$pass = '';
 
 	$db = 'ta_gudang';
 	$conn = mysqli_connect($host,$user,$pass,$db) or die('Database Belum Konek Bro');
-	//$folder = "gudang";
-	//$url = "http://".$_SERVER['HTTP_HOST'].'/'.$folder.'/';
-	$url = "https://sistemgudang.herokuapp.com/";
+	$folder = "ta_gudang";
+	$url = "http://".$_SERVER['HTTP_HOST'].'/'.$folder.'/';
+	//$url = "https://sistemgudang.herokuapp.com/";
 
 	if ( ! function_exists('tgl_indo'))
 {
