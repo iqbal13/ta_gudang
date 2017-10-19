@@ -76,7 +76,9 @@
             </ul>
             <div class="tab-content no-padding">
               <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenuea-chart" style="position: relative; height: 300px;"></div>
+                <h3> Grafik </h3>
+                <span> Hijau Barang keluar, Abu-Abu barang masuk </span>
+              <canvas class="chart tab-pane active" id="revenuea-chart" style="height: 500px;"></canvas>
             </div>
           </div>
           <!-- /.nav-tabs-custom -->
@@ -145,38 +147,81 @@
       </div>
 
       <script>
+  $(function () {
+    <?php
+    $nama_barang = array(); 
+    $barang_masuk = array();
+    $barang_keluar = array();
+    $barang = mysqli_query($conn, "SELECT * FROM buatgrafik ORDER BY nama_barangnya ASC");
+    while($d = mysqli_fetch_array($barang)){
+      array_push($nama_barang,$d['nama_barangnya']);
+      array_push($barang_masuk,$d['total_masuk']);
+      array_push($barang_keluar,$d['total_keluar']);
+    }
+    $dt = json_encode($nama_barang);
+    ?>
+     var areaChartData = {
+      labels  : <?php echo $dt ?>,
+      datasets: [
+        {
+          label               : 'Barang Masuk',
+          fillColor           : 'rgba(210, 214, 222, 1)',
+          strokeColor         : 'rgba(210, 214, 222, 1)',
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : <?php echo json_encode($barang_masuk) ?>
+        },
+        {
+          label               : 'Barang Keluar',
+          fillColor           : 'rgba(60,141,188,0.9)',
+          strokeColor         : 'rgba(60,141,188,0.8)',
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : <?php echo json_encode($barang_keluar) ?>
+        }
+      ]
+    }
 
-       var area = new Morris.Line({
-    element   : 'revenuea-chart',
-    resize    : true,
-    data      : [
-    <?php 
-    $query = "SELECT * FROM buatgrafik";
-    $dt = mysqli_query($conn,$query);
-    $a = 1;
-    while($c = mysqli_fetch_array($dt)) { 
-      
-      $total_masuk = $c['total_masuk'];
-      if($total_masuk == "" OR $total_masuk == NULL){
-        $total_masuk = 0;
-      }
+     var barChartCanvas                   = $('#revenuea-chart').get(0).getContext('2d')
+    var barChart                         = new Chart(barChartCanvas)
+    var barChartData                     = areaChartData
+    barChartData.datasets[1].fillColor   = '#00a65a'
+    barChartData.datasets[1].strokeColor = '#00a65a'
+    barChartData.datasets[1].pointColor  = '#00a65a'
+    var barChartOptions                  = {
+      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+      scaleBeginAtZero        : true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines      : true,
+      //String - Colour of the grid lines
+      scaleGridLineColor      : 'rgba(0,0,0,.05)',
+      //Number - Width of the grid lines
+      scaleGridLineWidth      : 2,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines  : true,
+      //Boolean - If there is a stroke on each bar
+      barShowStroke           : true,
+      //Number - Pixel width of the bar stroke
+      barStrokeWidth          : 3,
+      //Number - Spacing between each of the X value sets
+      barValueSpacing         : 5,
+      //Number - Spacing between data sets within X values
+      barDatasetSpacing       : 1,
+      //String - A legend template
+      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+      //Boolean - whether to make the chart responsive
+      responsive              : true,
+      maintainAspectRatio     : true
+    }
 
-      $total_keluar = $c['total_keluar'];
-      if($total_keluar == "" OR $total_keluar == NULL){
-        $total_keluar = 0;
-      }
-
-      ?>
-      { y: '<?php echo $c['nama_barangnya'] ?>',z: <?php echo $a ?>, item1: <?php echo $total_masuk ?>, item2: <?php echo $total_keluar ?>},
-    <?php  $a = $a + 1;} ?>
-    ],
-    xkey      : 'z',
-    ykeys     : ['item1', 'item2'],
-    labels    : ['Barang Masuk', 'Barang Keluar'],
-    lineColors: ['#a0d0e0', '#3c8dbc'],
-    hideHover : 'auto'
+    barChartOptions.datasetFill = true
+    barChart.Bar(barChartData, barChartOptions);
   });
-
-           area.redraw();
 
       </script>
